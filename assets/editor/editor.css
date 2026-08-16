@@ -1,0 +1,80 @@
+.bmd-editor-block {
+	overflow: hidden;
+	background: #f6f8fa;
+	border: 1px solid #d8dee4;
+	border-radius: 6px;
+}
+
+.bmd-editor-toolbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	min-height: 42px;
+	padding: 5px 7px 5px 14px;
+	background: #eef1f4;
+	border-bottom: 1px solid #d8dee4;
+}
+
+.bmd-editor-title {
+	color: #57606a;
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+.bmd-editor-toolbar .components-button {
+	height: 30px;
+	font-size: 12px;
+}
+
+.bmd-editor-block textarea {
+	min-height: 250px;
+	padding: 16px;
+	font: 13px/1.7 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+	background: #f6f8fa;
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+}
+
+.bmd-editor-block .components-base-control,
+.bmd-editor-block .components-base-control__field {
+	margin-bottom: 0;
+}
+
+.bmd-editor-preview {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 280px;
+	padding: 20px;
+	overflow: auto;
+	background: #fff;
+}
+
+.bmd-editor-svg {
+	width: 100%;
+	text-align: center;
+}
+
+.bmd-editor-svg svg {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	margin: 0 auto;
+}
+
+.bmd-editor-error {
+	width: 100%;
+	padding: 12px 14px;
+	color: #cf222e;
+	font-size: 13px;
+	background: #ffebe9;
+	border: 1px solid #ff8182;
+	border-radius: 5px;
+}
+
+.bmd-editor-loading {
+	color: #57606a;
+	font-size: 13px;
+}

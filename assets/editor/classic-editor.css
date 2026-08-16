@@ -1,0 +1,21 @@
+.mce-content-body pre.mermaid {
+	min-height: 160px;
+	padding: 14px 16px;
+	overflow: auto;
+	color: #24292f;
+	font: 13px/1.7 Consolas, Monaco, monospace;
+	white-space: pre;
+	background: #f6f8fa;
+	border: 1px solid #d8dee4;
+	border-radius: 6px;
+}
+
+.mce-content-body pre.mermaid::before {
+	display: block;
+	margin-bottom: 8px;
+	color: #57606a;
+	font-family: Arial, sans-serif;
+	font-size: 11px;
+	font-weight: 600;
+	content: "MERMAID";
+}

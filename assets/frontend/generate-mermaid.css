@@ -1,0 +1,71 @@
+.begin-mermaid-source,
+pre.mermaid {
+  position: relative;
+  max-width: 100%;
+  min-height: 96px;
+  margin: 24px 0;
+  padding: 18px;
+  overflow: auto;
+  color: #24292f;
+  font:
+    13px/1.7 ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    "Liberation Mono",
+    monospace;
+  white-space: pre;
+  background: #f6f8fa;
+  border: 1px solid #d8dee4;
+  border-radius: 6px;
+}
+
+.mermaid[data-processed="true"] {
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  overflow: auto;
+  font: inherit;
+  white-space: normal;
+  background: transparent;
+  border: 0;
+}
+
+.mermaid[data-processed="true"] svg {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.begin-mermaid-error {
+  color: #cf222e;
+  background: #ffebe9;
+  border-color: #ff8182;
+}
+
+.begin-mermaid-error::before {
+  display: block;
+  margin-bottom: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 600;
+  content: "Mermaid 图表语法错误";
+}
+
+@media screen and (max-width: 600px) {
+  .begin-mermaid-source,
+  pre.mermaid {
+    margin: 20px -10px;
+    border-right: 0;
+    border-left: 0;
+    border-radius: 0;
+  }
+}
+
+@media print {
+  .mermaid[data-processed="true"] {
+    overflow: visible;
+  }
+}
