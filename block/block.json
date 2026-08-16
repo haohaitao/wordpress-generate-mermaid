@@ -1,24 +1,24 @@
 {
-	"apiVersion": 2,
-	"name": "begin/mermaid",
-	"version": "1.0.0",
-	"title": "Mermaid 图表",
-	"category": "design",
-	"icon": "networking",
-	"description": "使用 Mermaid 语法创建流程图、时序图、类图等图表。",
-	"keywords": ["mermaid", "流程图", "图表", "diagram"],
-	"textdomain": "begin-mermaid",
-	"editorScript": "bmd-editor",
-	"editorStyle": "bmd-editor",
-	"attributes": {
-		"source": {
-			"type": "string",
-			"default": "flowchart TD\n    A[开始] --> B{条件判断}\n    B -->|是| C[执行操作]\n    B -->|否| D[结束]"
-		}
-	},
-	"supports": {
-		"align": ["wide", "full"],
-		"html": false,
-		"className": false
-	}
+  "apiVersion": 2,
+  "name": "generate/mermaid",
+  "version": "1.0.0",
+  "title": "Mermaid 图表",
+  "category": "design",
+  "icon": "networking",
+  "description": "使用 Mermaid 语法创建流程图、时序图、类图等图表。",
+  "keywords": ["mermaid", "流程图", "图表", "diagram"],
+  "textdomain": "generate-mermaid",
+  "editorScript": "bmd-editor",
+  "editorStyle": "bmd-editor",
+  "attributes": {
+    "source": {
+      "type": "string",
+      "default": "flowchart TD\n    A[开始] --> B{条件判断}\n    B -->|是| C[执行操作]\n    B -->|否| D[结束]"
+    }
+  },
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false,
+    "className": false
+  }
 }

@@ -1,7 +1,8 @@
 (function () {
   "use strict";
 
-  var selector = '.mermaid:not([data-processed="true"])';
+  var selector =
+    '.mermaid:not([data-processed="true"]):not([data-mermaid-error])';
   var observerTimer;
 
   function getNodes(root) {
@@ -16,8 +17,8 @@
   }
 
   function markError(node, error) {
-    node.classList.add("begin-mermaid-error");
-    node.removeAttribute("data-processed");
+    node.classList.add("generate-mermaid-error");
+    node.setAttribute("data-mermaid-error", "true");
     node.setAttribute("role", "img");
     node.setAttribute("aria-label", "Mermaid 图表语法错误");
 
@@ -27,12 +28,13 @@
   }
 
   function renderNode(node) {
-    if (node.dataset.beginMermaidRendering === "true") {
+    if (node.dataset.generateMermaidRendering === "true") {
       return;
     }
 
-    node.dataset.beginMermaidRendering = "true";
-    node.classList.remove("begin-mermaid-error");
+    node.dataset.generateMermaidRendering = "true";
+    node.classList.remove("generate-mermaid-error");
+    node.removeAttribute("data-mermaid-error");
 
     window.mermaid
       .run({
@@ -43,7 +45,7 @@
         markError(node, error);
       })
       .then(function () {
-        delete node.dataset.beginMermaidRendering;
+        delete node.dataset.generateMermaidRendering;
       });
   }
 
@@ -68,13 +70,15 @@
     }
 
     new MutationObserver(function (mutations) {
-      mutations.forEach(function (mutation) {
-        Array.prototype.forEach.call(mutation.addedNodes, function (node) {
-          if (node.nodeType === 1) {
-            scheduleRender(document);
-          }
+      var hasNewElement = mutations.some(function (mutation) {
+        return Array.prototype.some.call(mutation.addedNodes, function (node) {
+          return node.nodeType === 1;
         });
       });
+
+      if (hasNewElement) {
+        scheduleRender(document);
+      }
     }).observe(document.body, {
       childList: true,
       subtree: true,

@@ -2,7 +2,7 @@
 Contributors: haohaitao
 Tags: mermaid, flowchart, diagram, gutenberg, classic editor
 Requires at least: 5.8
-Requires PHP: 7.4
+Requires PHP: 7.2
 Stable tag: 1.0.0
 License: GPLv2 or later
 

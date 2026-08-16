@@ -10,7 +10,7 @@
   var ButtonGroup = wp.components.ButtonGroup;
   var TextareaControl = wp.components.TextareaControl;
 
-  if (window.mermaid && !window.beginMermaidEditorReady) {
+  if (window.mermaid && !window.generateMermaidEditorReady) {
     window.mermaid.initialize({
       startOnLoad: false,
       securityLevel: "strict",
@@ -21,7 +21,7 @@
         useMaxWidth: true,
       },
     });
-    window.beginMermaidEditorReady = true;
+    window.generateMermaidEditorReady = true;
   }
 
   function Edit(props) {
@@ -31,6 +31,7 @@
     var previewState = useState("");
     var errorState = useState("");
     var renderCount = useRef(0);
+    var debounceTimer = useRef(null);
     var mode = modeState[0];
     var setMode = modeState[1];
     var svg = previewState[0];
@@ -51,31 +52,40 @@
           return function () {};
         }
 
-        renderCount.current += 1;
-        renderId =
-          "generate-mermaid-" +
-          props.clientId.replace(/[^a-z0-9]/gi, "") +
-          "-" +
-          renderCount.current;
-        setError("");
-        setSvg("");
+        if (debounceTimer.current) {
+          window.clearTimeout(debounceTimer.current);
+        }
 
-        window.mermaid
-          .render(renderId, attributes.source)
-          .then(function (result) {
-            if (!cancelled) {
-              setSvg(result.svg);
-            }
-          })
-          .catch(function (renderError) {
-            if (!cancelled) {
-              setSvg("");
-              setError(renderError.message || "Mermaid 语法错误");
-            }
-          });
+        debounceTimer.current = window.setTimeout(function () {
+          renderCount.current += 1;
+          renderId =
+            "generate-mermaid-" +
+            props.clientId.replace(/[^a-z0-9]/gi, "") +
+            "-" +
+            renderCount.current;
+          setError("");
+          setSvg("");
+
+          window.mermaid
+            .render(renderId, attributes.source)
+            .then(function (result) {
+              if (!cancelled) {
+                setSvg(result.svg);
+              }
+            })
+            .catch(function (renderError) {
+              if (!cancelled) {
+                setSvg("");
+                setError(renderError.message || "Mermaid 语法错误");
+              }
+            });
+        }, 300);
 
         return function () {
           cancelled = true;
+          if (debounceTimer.current) {
+            window.clearTimeout(debounceTimer.current);
+          }
         };
       },
       [mode, attributes.source],
